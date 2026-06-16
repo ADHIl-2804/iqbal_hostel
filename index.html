@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farook College Diaries | Iqbal & A.L.M Hostels</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for that nostalgic, handwritten feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Kalam:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'handwriting': ['Caveat', 'cursive'],
+                        'marker': ['Kalam', 'cursive'],
+                        'typewriter': ['Special Elite', 'monospace'],
+                    },
+                    colors: {
+                        'cork': '#d4b595',
+                        'paper': '#f4f1ea',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            /* A subtle corkboard/wall background pattern */
+            background-color: #e5d9c5;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+            overflow-x: hidden;
+        }
+
+        /* The Polaroid Effect */
+        .polaroid {
+            background: #fff;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15), inset 0 0 20px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid #eaeaea;
+            break-inside: avoid;
+            margin-bottom: 24px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            z-index: 50;
+        }
+
+        .polaroid img, .polaroid video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            filter: sepia(20%) contrast(1.1) brightness(0.9); /* Vintage filter */
+            border-radius: 2px;
+        }
+
+        /* Tape effect */
+        .tape {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 100px;
+            height: 25px;
+            background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            backdrop-filter: blur(2px);
+            z-index: 10;
+        }
+
+        .tape:nth-child(even) {
+            transform: translateX(-50%) rotate(3deg);
+        }
+
+        /* Masonry Grid */
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 24px;
+        }
+
+        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        @media (min-width: 1280px) { .masonry-grid { column-count: 4; } }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e5d9c5; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a8947a; 
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b7961; 
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header Section -->
+    <header class="w-full pt-16 pb-12 px-6 text-center relative fade-in">
+        <div class="max-w-4xl mx-auto bg-paper p-8 shadow-xl rounded-sm transform -rotate-1 relative">
+            <div class="tape top-[-10px] left-1/4 transform -rotate-3"></div>
+            <div class="tape top-[-10px] right-1/4 transform rotate-2"></div>
+            
+            <h3 class="font-typewriter text-red-700 tracking-widest uppercase text-sm font-bold mb-2">Farook College Autonomous</h3>
+            <h1 class="font-marker text-5xl md:text-7xl font-bold text-gray-800 mb-4 tracking-wide leading-tight">
+                The Survival Diaries
+            </h1>
+            <h2 class="font-handwriting text-3xl md:text-4xl text-gray-600 mb-6">
+                Iqbal & Mudalliar teams
+            </h2>
+            <p class="font-handwriting text-2xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                "Where sleep was a myth, Maggi was a 5-star meal, and the friends we made became family. 
+                ,childishness became memmories& valli ,Open this in 2045 and try not to cry."
+            </p>
+            
+            <div class="mt-8 flex justify-center gap-4">
+                <button onclick="document.getElementById('addMemoryModal').classList.remove('hidden')" class="bg-amber-700 hover:bg-amber-800 text-white font-marker text-xl px-6 py-2 rounded-sm shadow-md transition-all transform hover:scale-105">
+                    <i class="fas fa-plus-circle mr-2"></i>Pin a Memory
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- The Scrapbook Canvas (Masonry Grid) -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-6 pb-20">
+        <div id="memory-board" class="masonry-grid w-full">
+            <!-- Memories will be injected here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-8 text-center font-typewriter text-gray-500 text-sm">
+        <p>Farook College Autonomous • Built for the boys of Iqbal & A.L.M • Memories last forever</p>
+    </footer>
+
+    <!-- Add Memory Modal (UI Only - Data clears on refresh) -->
+    <div id="addMemoryModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-[100] flex items-center justify-center p-4">
+        <div class="bg-paper p-8 rounded-sm max-w-md w-full relative shadow-2xl transform rotate-1">
+            <button onclick="document.getElementById('addMemoryModal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-600 hover:text-red-600 text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h2 class="font-marker text-3xl mb-6 text-center">Add to the Scrapbook</h2>
+            <p class="font-handwriting text-xl text-gray-500 mb-4 text-center">Note: Since this is a private file, editing here is temporary. To add permanent photos, edit the code's 'memoriesData' array!</p>
+            
+            <div class="space-y-4 font-handwriting text-2xl">
+                <p id="formError" class="text-red-500 text-lg hidden text-center font-sans font-bold">Please add both a link and a story!</p>
+                <div>
+                    <label class="block text-gray-700 mb-1">Image/Video Link:</label>
+                    <input type="text" id="memoryUrl" placeholder="https://..." class="w-full p-2 border-2 border-gray-300 rounded bg-white font-sans text-base">
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-1">What's the story?</label>
+                    <textarea id="memoryCaption" rows="3" placeholder="That time we..." class="w-full p-2 border-2 border-gray-300 rounded bg-white font-sans text-base"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-1">Type:</label>
+                    <select id="memoryType" class="w-full p-2 border-2 border-gray-300 rounded bg-white font-sans text-base">
+                        <option value="image">Photo</option>
+                        <option value="video">Video</option>
+                    </select>
+                </div>
+                <button onclick="addTemporaryMemory()" class="w-full bg-amber-700 hover:bg-amber-800 text-white py-3 rounded shadow-md mt-4 font-marker text-2xl transition">
+                    Pin it!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal for Full Screen Media -->
+    <div id="lightboxModal" class="hidden fixed inset-0 bg-black bg-opacity-95 z-[200] flex flex-col items-center justify-center p-4 transition-opacity duration-300 backdrop-blur-sm">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-gray-300 hover:text-white text-4xl focus:outline-none z-50 transition-transform hover:scale-110">
+            <i class="fas fa-times"></i>
+        </button>
+        <div id="lightboxContent" class="w-full max-w-5xl flex flex-col items-center relative">
+            <!-- Media injected here via JS -->
+        </div>
+        <p id="lightboxCaption" class="text-white font-handwriting text-3xl md:text-5xl mt-8 text-center max-w-4xl px-4 leading-relaxed drop-shadow-md"></p>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        /* ========================================================================
+        HOW TO ADD YOUR REAL MEMORIES:
+        1. Upload your photos/videos to Google Drive, Imgur, or keep them in 
+           the same folder as this HTML file.
+        2. Replace the 'src' links below with your actual links.
+        3. Change the 'caption' to your inside jokes and memories.
+        ========================================================================
+        */
+        
+        let memoriesData = [
+            {
+                type: 'image',
+                src: 'aslu.jpeg',
+                caption: 'The legendry man who makes every one happier and like a child🍜',
+            },
+            {
+                type: 'image',
+                src: '',
+                caption: '📚😴',
+            },
+            {
+                type: 'image',
+                src: '',
+                caption: ' 🚰',
+            },
+            {
+                type: 'image',
+                src: '',
+                caption: ' 🏏💥',
+            },
+            {
+                type: 'video',
+                // Using a placeholder video link. Replace with your own!
+                src: '', 
+                caption: '🎬',
+            },
+            {
+                type: 'image',
+                src: '',
+                caption: 'Farook College campus at sunset. The walk back to the hostel was elite. 🌅',
+            },
+            {
+                type: 'image',
+                src: '',
+                caption: ' 🍛🕺',
+            },
+            {
+                type: 'image',
+                src: '',
+                caption: ' 🎒🚌',
+            }
+        ];
+
+        // Function to generate a random rotation between -4 and 4 degrees
+        function getRandomRotation() {
+            const min = -4;
+            const max = 4;
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Function to render memories to the board
+        function renderMemories() {
+            const board = document.getElementById('memory-board');
+            board.innerHTML = ''; // Clear current
+
+            memoriesData.forEach((memory, index) => {
+                const rotation = getRandomRotation();
+                const delay = index * 0.1; // Staggered animation
+                
+                let mediaElement = '';
+                if (memory.type === 'video') {
+                    // Render video as a thumbnail with a play icon overlay
+                    mediaElement = `
+                        <div class="relative w-full">
+                            <video src="${memory.src}" class="w-full h-auto bg-black rounded-sm" loading="lazy" muted></video>
+                            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 hover:bg-opacity-10 transition-all rounded-sm">
+                                <i class="fas fa-play-circle text-white text-5xl opacity-90 drop-shadow-lg"></i>
+                            </div>
+                        </div>`;
+                } else {
+                    mediaElement = `<img src="${memory.src}" alt="Hostel Memory" loading="lazy" class="rounded-sm">`;
+                }
+
+                // Added onclick="openLightbox(${index})" to make the polaroid clickable
+                const html = `
+                    <div class="polaroid fade-in" style="transform: rotate(${rotation}deg); animation-delay: ${delay}s;" onclick="openLightbox(${index})">
+                        <div class="tape"></div>
+                        ${mediaElement}
+                        <p class="mt-4 font-handwriting text-2xl text-center text-gray-800 px-2 leading-tight">
+                            ${memory.caption}
+                        </p>
+                        <p class="text-right text-gray-400 font-typewriter text-xs mt-2 opacity-70">FC / Hostel Archive</p>
+                    </div>
+                `;
+                board.innerHTML += html;
+            });
+        }
+
+        // Function to handle adding a new memory temporarily
+        function addTemporaryMemory() {
+            const url = document.getElementById('memoryUrl').value;
+            const caption = document.getElementById('memoryCaption').value;
+            const type = document.getElementById('memoryType').value;
+            const errorText = document.getElementById('formError');
+
+            if (!url || !caption) {
+                errorText.classList.remove('hidden');
+                return;
+            }
+            errorText.classList.add('hidden');
+
+            // Add to the beginning of the array
+            memoriesData.unshift({
+                type: type,
+                src: url,
+                caption: caption
+            });
+
+            // Close modal, clear inputs, and re-render
+            document.getElementById('addMemoryModal').classList.add('hidden');
+            document.getElementById('memoryUrl').value = '';
+            document.getElementById('memoryCaption').value = '';
+            
+            renderMemories();
+            
+            // Scroll to top to see new memory
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- Lightbox Functions ---
+        function openLightbox(index) {
+            const memory = memoriesData[index];
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxContent = document.getElementById('lightboxContent');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+
+            lightboxContent.innerHTML = ''; // Clear previous content
+
+            // We use max-h-[75vh] to ensure the image/video never pushes the caption off-screen on mobile
+            if (memory.type === 'video') {
+                lightboxContent.innerHTML = `<video src="${memory.src}" controls autoplay class="max-w-full max-h-[75vh] object-contain rounded shadow-2xl border-4 border-white"></video>`;
+            } else {
+                lightboxContent.innerHTML = `<img src="${memory.src}" class="max-w-full max-h-[75vh] object-contain rounded shadow-2xl border-4 border-white">`;
+            }
+
+            lightboxCaption.textContent = memory.caption;
+            lightboxModal.classList.remove('hidden');
+            
+            // Prevent body scroll behind the modal
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxContent = document.getElementById('lightboxContent');
+            
+            // Pause video if it is playing to stop audio playing in the background
+            const video = lightboxContent.querySelector('video');
+            if (video) video.pause();
+
+            lightboxModal.classList.add('hidden');
+            
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }
+
+        // Initialize the board on page load
+        window.onload = () => {
+            renderMemories();
+        };
+    </script>
+</body>
+</html>
